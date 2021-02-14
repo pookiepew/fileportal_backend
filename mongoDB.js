@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const config = require('./utils/config');
+const config = require('./config');
 
 const connect = async () => {
   const dbUser = config.MONGO_USER;

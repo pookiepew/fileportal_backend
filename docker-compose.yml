@@ -1,10 +1,16 @@
 version: '3.8'
 
 services:
-  fileportal_api:
+  api:
     build: .
     ports:
       - '2089:2089'
+    networks:
+      - dev
     volumes:
       - ./:/app
       - /app/node_modules
+
+networks:
+  dev:
+    external: true

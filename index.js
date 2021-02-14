@@ -3,7 +3,7 @@ const cors = require('cors');
 const volleyball = require('volleyball');
 const helmet = require('helmet');
 
-// const websocket = require('./controllers/websocket');
+const websocket = require('./controllers/websocket');
 
 const mongoDB = require('./mongoDB');
 
@@ -40,6 +40,12 @@ const port = config.PORT || 2089;
 
 const server = app.listen(port, async () => {
   console.log(`http://${config.HOST}:` + server.address().port);
-  // websocket.connect();
   await mongoDB.connect();
+  const io = websocket.init(server);
+
+  io.on('connection', socket => {
+    console.log('Websocket client connected. ID:', socket.id);
+    websocket.listen(socket);
+    websocket.ping(socket);
+  });
 });
