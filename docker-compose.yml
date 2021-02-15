@@ -4,7 +4,7 @@ services:
   api:
     build: .
     ports:
-      - '2089:2089'
+      - '6060:6060'
     networks:
       - dev
     volumes:
