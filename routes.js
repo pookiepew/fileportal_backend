@@ -4,6 +4,8 @@ const user = require('./controllers/user');
 
 const file = require('./controllers/file');
 
+const trip = require('./controllers/trip');
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -16,5 +18,7 @@ router.post('/user/register', user.register);
 router.post('/user/login', user.login);
 
 router.post('/file/upload', file.upload);
+
+router.post('/trip/create', trip.create);
 
 module.exports = router;
