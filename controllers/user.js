@@ -1,10 +1,44 @@
-const HttpError = require('../models/HttpError');
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const config = require("../config");
+
+const db = require("../db/index");
+const User = require("../models/User");
+
+const HttpError = require("../models/HttpError");
+
+const hashPassword = require("../functions/hashPassword");
+const createJwtToken = require("../functions/createJwtToken");
 
 const login = async (req, res, next) => {
   console.log(req.body);
-  res.json({ msg: 'worked' });
+  res.json({ msg: "worked" });
+};
+
+const register = async (req, res, next) => {
+  const { name, email, password } = req.body;
+  try {
+    let user = await db.findUserByEmail(email, User);
+    if (user) {
+      const error = new HttpError(
+        "User already exists, please use another email",
+        400
+      );
+      return next(error);
+    }
+    const hashedPassword = await hashPassword(password, bcrypt);
+    user = await db.saveUser(name, email, hashedPassword, User);
+    const token = await createJwtToken(user, jwt, config);
+
+    res.status(201).json({ user: { name, email, token } });
+  } catch (err) {
+    console.log(err);
+    next(err);
+  }
 };
 
 module.exports = {
-  login
+  register,
+  login,
 };

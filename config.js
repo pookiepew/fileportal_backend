@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 /**
  * @typedef EnviromentConfiguration
@@ -9,6 +9,7 @@ require('dotenv').config();
  * @prop {string} MONGO_DBNAME Name of mongo database
  * @prop {string} MONGO_IP IP to mongodb host
  * @prop {string} MONGO_REPL Name of replicaset if any
+ * @prop {string} JWT_SECRET JsonWebTokens signature secret
  *
  */
 
@@ -16,7 +17,7 @@ require('dotenv').config();
  * @type {EnviromentConfiguration}
  */
 const config = {
-  ...process.env
+  ...process.env,
 };
 
 module.exports = config;
