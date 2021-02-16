@@ -3,7 +3,7 @@ module.exports = createNewTrip = async (tripNumber, creator, Trip) => {
   try {
     const newTrip = new Trip({
       number: tripNumber,
-      job: [],
+      jobs: [],
       creator,
     });
     await newTrip.save();

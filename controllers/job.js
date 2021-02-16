@@ -5,7 +5,7 @@ const Trip = require('../models/Trip');
 const HttpError = require('../models/HttpError');
 
 const create = async (req, res, next) => {
-  const { jobNumber, tripNumber } = req.body;
+  const { jobNumber, tripNumber, info = '' } = req.body;
   const userId = req.user.id;
   if (!jobNumber || !tripNumber) {
     const error = new HttpError('Job- or trip number are missing', 400);
@@ -20,7 +20,7 @@ const create = async (req, res, next) => {
       const error = new HttpError('Job already exists', 200);
       return next(error);
     }
-    const job = await db.createNewJob(jobNumber, tripNumber, userId, Job);
+    const job = await db.createNewJob(jobNumber, tripNumber, info, userId, Job);
     await db.addJobToTrip(tripNumber, job._id, Trip);
     res.status(201).json(job);
   } catch (err) {
