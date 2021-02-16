@@ -3,7 +3,7 @@ const { model, Schema, Types } = require('mongoose');
 const jobSchema = new Schema(
   {
     number: { type: Number, required: true },
-    trip: { type: Types.ObjectId, ref: 'Trip' },
+    trip: { type: Number, required: true },
     file: [
       {
         id: { type: Types.ObjectId, ref: 'File' },
