@@ -41,3 +41,7 @@ content-type: application/json
   "trip": "602aece2cd01770043659f6a",
   "creator": "602aa1f51eed6c0036be61c7"
 }
+
+###
+
+GET http://localhost:6060/job/find?number=962542

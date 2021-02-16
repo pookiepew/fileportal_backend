@@ -17,6 +17,21 @@ const create = async (req, res, next) => {
   }
 };
 
+const find = async (req, res, next) => {
+  const { number } = req.query;
+  if (!number) {
+    const error = new HttpError('No job number provided', 400);
+    return next(error);
+  }
+  try {
+    const job = await db.findJobByNumber(number, Job);
+    res.json(job);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   create,
+  find,
 };

@@ -27,4 +27,6 @@ router.get('/trip/find', trip.find);
 
 router.post('/job/create', job.create);
 
+router.get('/job/find', job.find);
+
 module.exports = router;

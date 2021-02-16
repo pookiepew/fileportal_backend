@@ -25,7 +25,7 @@ const find = async (req, res, next) => {
     return next(error);
   }
   try {
-    const trip = await db.findTripById(number, Trip);
+    const trip = await db.findTripByNumber(number, Trip);
     res.json(trip);
   } catch (err) {
     next(err);
