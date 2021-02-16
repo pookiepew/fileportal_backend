@@ -24,12 +24,12 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 {
-  "tripNumber": "4"
+  "tripNumber": "69"
 }
 
 ###
 
-GET http://localhost:6060/trip/find?number=1
+GET http://localhost:6060/trip/find?number=69
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 ###
@@ -39,8 +39,8 @@ content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 {
-  "jobNumber": "100",
-  "tripNumber": "1"
+  "jobNumber": "71",
+  "tripNumber": "69"
 }
 
 ###
