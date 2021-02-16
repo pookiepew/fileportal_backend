@@ -30,7 +30,7 @@ const find = async (req, res, next) => {
     return next(error);
   }
   try {
-    const trip = await db.findTripByNumber(number, Trip);
+    const trip = await db.findTripByNumber(number, Trip, HttpError);
     res.json(trip);
   } catch (err) {
     next(err);
@@ -39,5 +39,5 @@ const find = async (req, res, next) => {
 
 module.exports = {
   create,
-  find,
+  find
 };

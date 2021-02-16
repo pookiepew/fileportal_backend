@@ -35,7 +35,7 @@ const find = async (req, res, next) => {
     return next(error);
   }
   try {
-    const job = await db.findJobByNumber(number, Job);
+    const job = await db.findJobByNumber(number, Job, HttpError);
     res.json(job);
   } catch (err) {
     next(err);
@@ -44,5 +44,5 @@ const find = async (req, res, next) => {
 
 module.exports = {
   create,
-  find,
+  find
 };
