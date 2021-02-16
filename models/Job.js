@@ -6,14 +6,15 @@ const jobSchema = new Schema(
     trip: { type: Types.ObjectId, ref: 'Trip' },
     file: [
       {
-        id: { type: Types.ObjectId, ref: 'File' }
-      }
+        id: { type: Types.ObjectId, ref: 'File' },
+      },
     ],
-    creator: { type: Types.ObjectId, ref: 'User', required: true }
+    info: { type: String },
+    creator: { type: Types.ObjectId, ref: 'User', required: true },
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
   }
 );
 
