@@ -4,11 +4,7 @@ const jobSchema = new Schema(
   {
     number: { type: Number, required: true },
     trip: { type: Number, required: true },
-    file: [
-      {
-        id: { type: Types.ObjectId, ref: 'File' },
-      },
-    ],
+    files: [{ type: Types.ObjectId, ref: 'File' }],
     info: { type: String },
     creator: { type: Types.ObjectId, ref: 'User', required: true },
   },

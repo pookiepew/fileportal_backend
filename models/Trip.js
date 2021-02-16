@@ -3,11 +3,7 @@ const { model, Schema, Types } = require('mongoose');
 const tripSchema = new Schema(
   {
     number: { type: Number, required: true },
-    job: [
-      {
-        id: { type: Types.ObjectId, ref: 'Job' },
-      },
-    ],
+    jobs: [{ type: Types.ObjectId, ref: 'Job' }],
     creator: { type: Types.ObjectId, ref: 'User', required: true },
     done: { type: Boolean, default: false },
   },
