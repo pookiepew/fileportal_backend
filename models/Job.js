@@ -6,11 +6,11 @@ const jobSchema = new Schema(
     trip: { type: Number, required: true },
     files: [{ type: Types.ObjectId, ref: 'File' }],
     info: { type: String },
-    creator: { type: Types.ObjectId, ref: 'User', required: true },
+    creator: { type: Types.ObjectId, ref: 'User', required: true }
   },
   {
     versionKey: false,
-    timestamps: true,
+    timestamps: true
   }
 );
 

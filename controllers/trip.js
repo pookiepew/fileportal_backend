@@ -16,7 +16,11 @@ const create = async (req, res, next) => {
     return next(error);
   }
   try {
-    const newTrip = await db.createNewTrip(tripNumber, userId, Trip);
+    if (await db.tripAlreadyExists(tripNumber, Trip)) {
+      const error = new HttpError('Trip already exists', 200);
+      return next(error);
+    }
+    const newTrip = await db.createNewTrip(tripNumber, userId, Trip, HttpError);
     res.status(201).json(newTrip);
   } catch (err) {
     next(err);

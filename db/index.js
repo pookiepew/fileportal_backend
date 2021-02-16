@@ -6,6 +6,7 @@ const saveUser = require('./saveUser');
 const createNewTrip = require('./createNewTrip');
 const addJobToTrip = require('./addJobToTrip');
 const findTripByNumber = require('./findTripByNumber');
+const tripAlreadyExists = require('./tripAlreadyExists');
 
 const createNewJob = require('./createNewJob');
 const findJobByNumber = require('./findJobByNumber');
@@ -18,7 +19,8 @@ module.exports = {
   createNewTrip,
   addJobToTrip,
   findTripByNumber,
+  tripAlreadyExists,
   createNewJob,
   findJobByNumber,
-  jobAlreadyExists,
+  jobAlreadyExists
 };
