@@ -1,5 +1,7 @@
 const express = require('express');
 
+const checkAuth = require('./middleware/checkAuth');
+
 const user = require('./controllers/user');
 
 const file = require('./controllers/file');
@@ -21,7 +23,7 @@ router.post('/user/login', user.login);
 
 router.post('/file/upload', file.upload);
 
-router.post('/trip/create', trip.create);
+router.post('/trip/create', checkAuth, trip.create);
 
 router.get('/trip/find', trip.find);
 

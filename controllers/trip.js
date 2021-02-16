@@ -6,6 +6,7 @@ const db = require('../db/index');
 
 const create = async (req, res, next) => {
   const { tripNumber, creatorID } = req.body; // creator from auth later
+  console.log(req.user);
   if (!tripNumber) {
     const error = new HttpError('No trip number provided', 400);
     return next(error);

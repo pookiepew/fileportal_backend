@@ -21,9 +21,10 @@ content-type: application/json
 
 POST http://localhost:6060/trip/create HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTIxNSwiZXhwIjoxNjEzNDc1Mjc1fQ.AU7jzphlV6oCLrLp7a2teERT1PAK2C_z4Sr_4l4XJIU
 
 {
-  "tripNumber": "2346346",
+  "tripNumber": "3",
   "creatorID": "602aa1f51eed6c0036be61c7"
 }
 
