@@ -4,9 +4,9 @@ const Job = require('../models/Job');
 const HttpError = require('../models/HttpError');
 
 const create = async (req, res, next) => {
-  const { number, trip, creator } = req.body;
+  const { number, trip, creator } = req.body; //creator from auth later
   if (!number || !trip || !creator) {
-    const error = new HttoError('Number, trip or creator missing', 400);
+    const error = new HttpError('Number, trip or creator missing', 400);
     return next(error);
   }
   try {
