@@ -26,3 +26,7 @@ content-type: application/json
   "tripNumber": "2346346",
   "creatorID": "602aa1f51eed6c0036be61c7"
 }
+
+###
+
+GET http://localhost:6060/trip/find?number=2346346

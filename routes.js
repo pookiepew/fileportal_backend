@@ -21,4 +21,6 @@ router.post('/file/upload', file.upload);
 
 router.post('/trip/create', trip.create);
 
+router.get('/trip/find', trip.find);
+
 module.exports = router;

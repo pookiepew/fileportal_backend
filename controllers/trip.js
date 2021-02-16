@@ -18,6 +18,21 @@ const create = async (req, res, next) => {
   }
 };
 
+const find = async (req, res, next) => {
+  const { number } = req.query;
+  if (!number) {
+    const error = new HttpError('No trip number provided', 400);
+    return next(error);
+  }
+  try {
+    const trip = await db.findTripById(number, Trip);
+    res.json(trip);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
-  create
+  create,
+  find,
 };
