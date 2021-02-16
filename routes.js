@@ -21,14 +21,14 @@ router.post('/user/register', user.register);
 
 router.post('/user/login', user.login);
 
-router.post('/file/upload', file.upload);
+router.post('/file/upload', checkAuth, file.upload);
 
 router.post('/trip/create', checkAuth, trip.create);
 
-router.get('/trip/find', trip.find);
+router.get('/trip/find', checkAuth, trip.find);
 
-router.post('/job/create', job.create);
+router.post('/job/create', checkAuth, job.create);
 
-router.get('/job/find', job.find);
+router.get('/job/find', checkAuth, job.find);
 
 module.exports = router;

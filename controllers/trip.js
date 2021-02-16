@@ -5,14 +5,18 @@ const HttpError = require('../models/HttpError');
 const db = require('../db/index');
 
 const create = async (req, res, next) => {
-  const { tripNumber, creatorID } = req.body; // creator from auth later
-  console.log(req.user);
+  const { tripNumber } = req.body;
+  const userId = req.user.id;
   if (!tripNumber) {
     const error = new HttpError('No trip number provided', 400);
     return next(error);
   }
+  if (!userId) {
+    const error = new HttpError('Not authorized', 401);
+    return next(error);
+  }
   try {
-    const newTrip = await db.createNewTrip(tripNumber, creatorID, Trip);
+    const newTrip = await db.createNewTrip(tripNumber, userId, Trip);
     res.status(201).json(newTrip);
   } catch (err) {
     next(err);

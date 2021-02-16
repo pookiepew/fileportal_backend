@@ -21,28 +21,29 @@ content-type: application/json
 
 POST http://localhost:6060/trip/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTIxNSwiZXhwIjoxNjEzNDc1Mjc1fQ.AU7jzphlV6oCLrLp7a2teERT1PAK2C_z4Sr_4l4XJIU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 {
-  "tripNumber": "3",
-  "creatorID": "602aa1f51eed6c0036be61c7"
+  "tripNumber": "4"
 }
 
 ###
 
-GET http://localhost:6060/trip/find?number=2346346
+GET http://localhost:6060/trip/find?number=4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 ###
 
 POST http://localhost:6060/job/create HTTP/1.1
 content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
 
 {
   "number": "962542",
-  "trip": "602aece2cd01770043659f6a",
-  "creator": "602aa1f51eed6c0036be61c7"
+  "trip": "602aece2cd01770043659f6a"
 }
 
 ###
 
 GET http://localhost:6060/job/find?number=962542
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g

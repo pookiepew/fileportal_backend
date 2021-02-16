@@ -4,13 +4,18 @@ const Job = require('../models/Job');
 const HttpError = require('../models/HttpError');
 
 const create = async (req, res, next) => {
-  const { number, trip, creator } = req.body; //creator from auth later
-  if (!number || !trip || !creator) {
-    const error = new HttpError('Number, trip or creator missing', 400);
+  const { number, trip } = req.body;
+  const userId = req.user.id;
+  if (!number || !trip) {
+    const error = new HttpError('Number or trip missing', 400);
+    return next(error);
+  }
+  if (!userId) {
+    const error = new HttpError('Not authorized', 401);
     return next(error);
   }
   try {
-    const job = await db.createNewJob(number, trip, creator, Job);
+    const job = await db.createNewJob(number, trip, userId, Job);
     res.status(201).json(job);
   } catch (err) {
     next(err);
