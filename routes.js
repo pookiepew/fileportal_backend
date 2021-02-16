@@ -6,6 +6,8 @@ const file = require('./controllers/file');
 
 const trip = require('./controllers/trip');
 
+const job = require('./controllers/job');
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -22,5 +24,7 @@ router.post('/file/upload', file.upload);
 router.post('/trip/create', trip.create);
 
 router.get('/trip/find', trip.find);
+
+router.post('/job/create', job.create);
 
 module.exports = router;
