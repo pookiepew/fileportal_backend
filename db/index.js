@@ -18,6 +18,8 @@ const createNewJob = require('./createNewJob');
 const findJobByNumber = require('./findJobByNumber');
 const jobAlreadyExists = require('./jobAlreadyExists');
 
+const tokenMatchInviteToken = require('./tokenMatchInviteToken');
+
 module.exports = {
   connect,
   findUserByEmail,
@@ -32,4 +34,5 @@ module.exports = {
   createNewJob,
   findJobByNumber,
   jobAlreadyExists,
+  tokenMatchInviteToken,
 };

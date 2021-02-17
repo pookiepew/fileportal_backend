@@ -11,6 +11,7 @@ const HttpError = require('../models/HttpError');
 
 const hashPassword = require('../functions/hashPassword');
 const createJwtToken = require('../functions/createJwtToken');
+const decodeJwtToken = require('../functions/decodeJwtToken');
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -106,8 +107,57 @@ const invite = async (req, res, next) => {
       token,
       InvitedUser
     );
-    // SEND INVITE EMAIL!
+
+    // Send invitation mail
+    // WS emit update ?
+
     res.json({ invitedUser, userWhoInvites });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const acceptInvite = async (req, res, next) => {
+  const { token } = req.body;
+  if (!token) {
+    const error = new HttpError('Token not provided, access denied', 401);
+    return next(error);
+  }
+  try {
+    if (!(await db.tokenMatchInviteToken(token, InvitedUser))) {
+      const error = new HttpError('Invalid token', 401);
+      return next(error);
+    }
+    const decodedToken = await decodeJwtToken(token, jwt, config, HttpError);
+    // Delete user from InvitedUser
+    // WS emit update
+    // Add user to User
+    // Send confirmation email
+    // Create a new JWT
+    // Return JWT
+    res.json(decodedToken);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const generateNewInviteToken = async (req, res, next) => {
+  const { token, email } = req.body;
+  if (!token || !email) {
+    const error = new HttpError(
+      'Token or Email not provided, access denied',
+      401
+    );
+    return next(error);
+  }
+  try {
+    if (!(await db.tokenMatchInviteToken(token, InvitedUser))) {
+      const error = new HttpError('Invalid token', 401);
+      return next(error);
+    }
+    const payload = {};
+    const expiresIn = '30 minutes';
+    const newToken = await createJwtToken(payload, expiresIn, jwt, config);
   } catch (err) {
     next(err);
   }
@@ -117,4 +167,6 @@ module.exports = {
   login,
   register,
   invite,
+  acceptInvite,
+  generateNewInviteToken,
 };

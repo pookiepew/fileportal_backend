@@ -23,6 +23,10 @@ router.post('/user/login', user.login);
 
 router.post('/user/invite', checkAuth, user.invite);
 
+router.post('/user/accept-invite', checkAuth, user.acceptInvite);
+
+router.post('/user/new-invite-token', user.generateNewInviteToken);
+
 router.post('/file/upload', checkAuth, file.upload);
 
 router.post('/trip/create', checkAuth, trip.create);

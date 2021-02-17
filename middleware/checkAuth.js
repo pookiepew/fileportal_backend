@@ -15,7 +15,7 @@ module.exports = checkAuth = async (req, res, next) => {
     return next(error);
   }
   try {
-    const decodedToken = await decodeJwtToken(token, jwt, config);
+    const decodedToken = await decodeJwtToken(token, jwt, config, HttpError);
     req.user = decodedToken.user;
     next();
   } catch (err) {
