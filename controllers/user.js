@@ -25,7 +25,9 @@ const login = async (req, res, next) => {
 
     if (!isMatch) return next(credentialsFail);
 
-    const token = await createJwtToken(user, jwt, config);
+    const expiresIn = '5 days';
+
+    const token = await createJwtToken(user, expiresIn, jwt, config);
 
     res.json({ user: { name: user.name, email, token } });
   } catch (err) {
@@ -47,7 +49,8 @@ const register = async (req, res, next) => {
     }
     const hashedPassword = await hashPassword(password, bcrypt);
     user = await db.saveUser(name, email, hashedPassword, User);
-    const token = await createJwtToken(user, jwt, config);
+    const expiresIn = '5 days';
+    const token = await createJwtToken(user, expiresIn, jwt, config);
 
     res.status(201).json({ user: { name, email, token } });
   } catch (err) {
@@ -58,5 +61,5 @@ const register = async (req, res, next) => {
 
 module.exports = {
   register,
-  login
+  login,
 };
