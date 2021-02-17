@@ -13,8 +13,29 @@ POST http://localhost:6060/user/login HTTP/1.1
 content-type: application/json
 
 {
-  "email": "some@email.com",
+  "email": "jdoe@email.com",
   "password": "ioj52lk34jki345"
+}
+
+###
+
+POST http://localhost:6060/user/invite HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
+
+{
+  "email": "jdoe3@email.com"
+}
+
+###
+
+POST http://localhost:6060/user/accept-invite HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTNAZW1haWwuY29tIn0sImlhdCI6MTYxMzU2Mjc1MiwiZXhwIjoxNjEzNTY0NTUyfQ.OKRwIKdWxYBlbZ5pcTvXagPMUJHOsQGOzX5vuE2pFGk
+
+{
+  "email": "jdoe3@email.com",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTNAZW1haWwuY29tIn0sImlhdCI6MTYxMzU2Mjc1MiwiZXhwIjoxNjEzNTY0NTUyfQ.OKRwIKdWxYBlbZ5pcTvXagPMUJHOsQGOzX5vuE2pFGk"
 }
 
 ###

@@ -21,6 +21,8 @@ router.post('/user/register', user.register);
 
 router.post('/user/login', user.login);
 
+router.post('/user/invite', checkAuth, user.invite);
+
 router.post('/file/upload', checkAuth, file.upload);
 
 router.post('/trip/create', checkAuth, trip.create);
