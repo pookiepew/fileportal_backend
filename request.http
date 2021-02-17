@@ -3,8 +3,8 @@ content-type: application/json
 
 {
   "name": "John Doe",
-  "email": "some@email.com",
-  "password": "ioj5i345"
+  "email": "jdoe@email.com",
+  "password": "ioj52lk34jki345"
 }
 
 ###
@@ -14,36 +14,36 @@ content-type: application/json
 
 {
   "email": "some@email.com",
-  "password": "ioj5i345"
+  "password": "ioj52lk34jki345"
 }
 
 ###
 
 POST http://localhost:6060/trip/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
 
 {
-  "tripNumber": "2"
+  "tripNumber": "3"
 }
 
 ###
 
-GET http://localhost:6060/trip/find?number=1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
+GET http://localhost:6060/trip/find?number=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
 
 ###
 
 POST http://localhost:6060/job/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
 
 {
-  "jobNumber": "4",
-  "tripNumber": "2"
+  "jobNumber": "969234",
+  "tripNumber": "3"
 }
 
 ###
 
-GET http://localhost:6060/job/find?number=72
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyYWExZjUxZWVkNmMwMDM2YmU2MWM3In0sImlhdCI6MTYxMzQ3NTkyMiwiZXhwIjoxNjEzOTA3OTIyfQ.mfwa0rmKLw_FAuY2stqU2AhR_fWIVVXshqkrYGktC0g
+GET http://localhost:6060/job/find?number=3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
