@@ -1,6 +1,6 @@
 # Fileportal
 
-####Invite Auth flow:
+#### Invite Auth flow:
 
 - An authenticated user invites new user with email
 - Invited user will receive email with a link which includes a 30 minute token
