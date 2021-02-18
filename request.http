@@ -1,14 +1,17 @@
 @host = http://localhost:6060
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzYzODY2NSwiZXhwIjoxNjE0MDcwNjY1fQ.UbwYLbpXHzLs0Azf3V5XeQ7NwSEySsuSWCYy3maNsr0
 
-@invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTRAZW1haWwuY29tIn0sImlhdCI6MTYxMzY0MDY4NSwiZXhwIjoxNjEzNjQyNDg1fQ.tqjU1mLkQKjaudIio-7LDXvNMjIzVxwXrt6DQKc4pCM
+@invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQwOSwiZXhwIjoxNjEzNjU1MjA5fQ.m3LThtlFws48n1XFt-KDiEPGE1nXZKkHo9a-wizwFUQ
+
+@acceptToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQ0NiwiZXhwIjoxNjEzNzM5ODQ2fQ.n1UEzZxlAG1fH7pf7PGY19ixPDKfb4WgRXgqI4vmYeI
 
 POST {{host}}/user/register HTTP/1.1
 content-type: application/json
+Authorization: Bearer {{acceptToken}}
 
 {
   "name": "John Doe",
-  "email": "jdoe@email.com",
+  "email": "jdoe5@email.com",
   "password": "ioj52lk34jki345"
 }
 
@@ -29,7 +32,7 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "email": "jdoe4@email.com"
+  "email": "jdoe5@email.com"
 }
 
 ###
@@ -39,7 +42,7 @@ content-type: application/json
 Authorization: Bearer {{invToken}}
 
 {
-  "email": "jdoe3@email.com",
+  "email": "jdoe5@email.com",
   "token": "{{invToken}}"
 }
 

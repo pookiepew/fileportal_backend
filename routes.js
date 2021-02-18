@@ -17,9 +17,9 @@ router.get('/', (req, res, next) => {
   res.json({ msg: '/' });
 });
 
-router.post('/user/register', user.register);
-
 router.post('/user/login', user.login);
+
+router.post('/user/register', checkAuth, user.register);
 
 router.post('/user/invite', checkAuth, user.invite);
 

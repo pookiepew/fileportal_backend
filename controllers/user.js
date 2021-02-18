@@ -11,7 +11,6 @@ const HttpError = require('../models/HttpError');
 
 const hashPassword = require('../functions/hashPassword');
 const createJwtToken = require('../functions/createJwtToken');
-const decodeJwtToken = require('../functions/decodeJwtToken');
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -42,6 +41,10 @@ const register = async (req, res, next) => {
   const { name, email, password } = req.body;
   if (!name || !email || !password) {
     const error = new HttpError('Name, email or password not provided', 400);
+    return next(error);
+  }
+  if (req.user && req.user.email !== email) {
+    const error = new HttpError('Authorization error', 401);
     return next(error);
   }
   try {
@@ -118,9 +121,16 @@ const invite = async (req, res, next) => {
 };
 
 const acceptInvite = async (req, res, next) => {
-  const { token } = req.body;
-  if (!token) {
-    const error = new HttpError('Token not provided, access denied', 401);
+  const { email, token } = req.body;
+  if (!email || !token) {
+    const error = new HttpError(
+      'Email or Token not provided, access denied',
+      401
+    );
+    return next(error);
+  }
+  if (req.user && req.user.email !== email) {
+    const error = new HttpError('Email does not match token', 401);
     return next(error);
   }
   try {
@@ -128,18 +138,14 @@ const acceptInvite = async (req, res, next) => {
       const error = new HttpError('Invalid token', 401);
       return next(error);
     }
-    const { email } = req.user;
     const invitedUser = await db.findInvitedUser(email, InvitedUser);
-    // invitedUser.accepted = true
-    // invitedUser.token = 'accepted'
-    // await invitedUser.save()
-
-    // WS emit update
-    // Add user to User
-    // Send confirmation email
-    // Create a new JWT
-    // Return JWT
-    res.json({ email, invitedUser });
+    invitedUser.accepted = true;
+    invitedUser.token = 'accepted';
+    await invitedUser.save();
+    const payload = { user: { email } };
+    const expiresIn = '1 day';
+    const newToken = await createJwtToken(payload, expiresIn, jwt, config);
+    res.json({ user: { email, token: newToken } });
   } catch (err) {
     next(err);
   }
