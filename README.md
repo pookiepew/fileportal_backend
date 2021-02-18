@@ -46,7 +46,7 @@ Example response
 ```js
 
 POST /trip/create
-     Authorization: bearer TOKEN
+Authorization: bearer TOKEN
 
      {
       tripNumber: '402034'
@@ -70,7 +70,7 @@ Example response
 
 GET /trip/find
     ?number=402034
-     Authorization: bearer TOKEN
+Authorization: bearer TOKEN
 
      {
       tripNumber: '402034'
@@ -97,7 +97,7 @@ Example response
 ```js
 
 POST /job/create
-     Authorization: bearer TOKEN
+Authorization: bearer TOKEN
 
      {
         "jobNumber": "23423",
@@ -123,8 +123,7 @@ Example response
 
 GET /job/find
     ?number=23423
-
-     Authorization: bearer TOKEN
+Authorization: bearer TOKEN
 
 Example response
 

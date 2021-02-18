@@ -1,4 +1,9 @@
-POST http://localhost:6060/user/register HTTP/1.1
+@host = http://localhost:6060
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzYzODY2NSwiZXhwIjoxNjE0MDcwNjY1fQ.UbwYLbpXHzLs0Azf3V5XeQ7NwSEySsuSWCYy3maNsr0
+
+@invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTRAZW1haWwuY29tIn0sImlhdCI6MTYxMzY0MDY4NSwiZXhwIjoxNjEzNjQyNDg1fQ.tqjU1mLkQKjaudIio-7LDXvNMjIzVxwXrt6DQKc4pCM
+
+POST {{host}}/user/register HTTP/1.1
 content-type: application/json
 
 {
@@ -9,7 +14,7 @@ content-type: application/json
 
 ###
 
-POST http://localhost:6060/user/login HTTP/1.1
+POST {{host}}/user/login HTTP/1.1
 content-type: application/json
 
 {
@@ -19,52 +24,61 @@ content-type: application/json
 
 ###
 
-POST http://localhost:6060/user/invite HTTP/1.1
+POST {{host}}/user/invite HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
+Authorization: Bearer {{token}}
 
 {
-  "email": "jdoe3@email.com"
+  "email": "jdoe4@email.com"
 }
 
 ###
 
-POST http://localhost:6060/user/accept-invite HTTP/1.1
+POST {{host}}/user/accept-invite HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTNAZW1haWwuY29tIn0sImlhdCI6MTYxMzU2Mjc1MiwiZXhwIjoxNjEzNTY0NTUyfQ.OKRwIKdWxYBlbZ5pcTvXagPMUJHOsQGOzX5vuE2pFGk
+Authorization: Bearer {{invToken}}
 
 {
   "email": "jdoe3@email.com",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTNAZW1haWwuY29tIn0sImlhdCI6MTYxMzU2Mjc1MiwiZXhwIjoxNjEzNTY0NTUyfQ.OKRwIKdWxYBlbZ5pcTvXagPMUJHOsQGOzX5vuE2pFGk"
+  "token": "{{invToken}}"
 }
 
 ###
 
-POST http://localhost:6060/trip/create HTTP/1.1
+POST {{host}}/user/new-invite-token HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
 
 {
-  "tripNumber": "3"
+  "token": "{{invToken}}"
 }
 
 ###
 
-GET http://localhost:6060/trip/find?number=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
-
-###
-
-POST http://localhost:6060/job/create HTTP/1.1
+POST {{host}}/trip/create HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
+Authorization: Bearer {{token}}
 
 {
-  "jobNumber": "969234",
-  "tripNumber": "3"
+  "tripNumber": "4"
 }
 
 ###
 
-GET http://localhost:6060/job/find?number=3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzU1NDc4NCwiZXhwIjoxNjEzOTg2Nzg0fQ.a2MbKW4IlloLW_OK6BKcsXYeQQ8uWz2fj1j8UggrfLk
+GET {{host}}/trip/find?number=4
+Authorization: Bearer {{token}}
+
+###
+
+POST {{host}}/job/create HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "jobNumber": "44",
+  "tripNumber": "4"
+}
+
+###
+
+GET {{host}}/job/find?number=41
+Authorization: Bearer {{token}}

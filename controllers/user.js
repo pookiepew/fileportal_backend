@@ -128,26 +128,27 @@ const acceptInvite = async (req, res, next) => {
       const error = new HttpError('Invalid token', 401);
       return next(error);
     }
-    const decodedToken = await decodeJwtToken(token, jwt, config, HttpError);
-    // Delete user from InvitedUser
+    const { email } = req.user;
+    const invitedUser = await db.findInvitedUser(email, InvitedUser);
+    // invitedUser.accepted = true
+    // invitedUser.token = 'accepted'
+    // await invitedUser.save()
+
     // WS emit update
     // Add user to User
     // Send confirmation email
     // Create a new JWT
     // Return JWT
-    res.json(decodedToken);
+    res.json({ email, invitedUser });
   } catch (err) {
     next(err);
   }
 };
 
 const generateNewInviteToken = async (req, res, next) => {
-  const { token, email } = req.body;
-  if (!token || !email) {
-    const error = new HttpError(
-      'Token or Email not provided, access denied',
-      401
-    );
+  const { token } = req.body;
+  if (!token) {
+    const error = new HttpError('Token not provided, access denied', 401);
     return next(error);
   }
   try {
@@ -155,9 +156,21 @@ const generateNewInviteToken = async (req, res, next) => {
       const error = new HttpError('Invalid token', 401);
       return next(error);
     }
-    const payload = {};
+    const invitedUser = await db.findInvitedUserByToken(token, InvitedUser);
+    if (!invitedUser) {
+      const error = new HttpError('No user found', 404);
+      return next(error);
+    }
+    const payload = { user: { email: invitedUser.email } };
     const expiresIn = '30 minutes';
     const newToken = await createJwtToken(payload, expiresIn, jwt, config);
+    invitedUser.token = newToken;
+    await invitedUser.save();
+    // Send new invitation mail
+    res.json({
+      msg: 'New invitation email sent, please check your mail.',
+      token: newToken,
+    });
   } catch (err) {
     next(err);
   }

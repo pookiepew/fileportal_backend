@@ -6,6 +6,7 @@ const findUserById = require('./findUserById');
 const saveUser = require('./saveUser');
 const saveInvitedUser = require('./saveInvitedUser');
 const findInvitedUser = require('./findInvitedUser');
+const findInvitedUserByToken = require('./findInvitedUserByToken');
 
 // TRIP
 const createNewTrip = require('./createNewTrip');
@@ -27,6 +28,7 @@ module.exports = {
   saveUser,
   saveInvitedUser,
   findInvitedUser,
+  findInvitedUserByToken,
   createNewTrip,
   addJobToTrip,
   findTripByNumber,
