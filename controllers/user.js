@@ -114,7 +114,7 @@ const invite = async (req, res, next) => {
     // Send invitation mail
     // WS emit update ?
 
-    res.json({ invitedUser, userWhoInvites });
+    res.json({ msg: 'Successfully sent invitation to ' + email });
   } catch (err) {
     next(err);
   }

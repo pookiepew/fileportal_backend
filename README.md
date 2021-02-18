@@ -14,11 +14,13 @@
 ```js
 
 POST /user/register
-     {
-      name: 'John Doe',
-      email: 'johndoe@email.com',
-      password : 'PASSWORD'
-     }
+Authorization: bearer TOKEN
+
+body: {
+        name: 'John Doe',
+        email: 'johndoe@email.com',
+        password : 'PASSWORD'
+      }
 
 Example response
 
@@ -34,11 +36,68 @@ Example response
 
 ```js
 
+POST /user/invite
+Authorization: bearer TOKEN
+
+body: {
+        email: 'johndoe@email.com'
+      }
+
+Example response
+
+  {
+    "msg": "Successfully sent invitation to <email>"
+  }
+
+```
+
+```js
+
+POST /user/accept-invite
+Authorization: bearer TOKEN
+
+body: {
+        email: 'johndoe@email.com',
+        token: 'TOKEN'
+      }
+
+Example response
+
+  {
+    "user": {
+      "email": "johndoe@email.com",
+      "token": "TOKEN"
+    }
+  }
+
+```
+
+```js
+
+POST /user/new-invite-token
+
+body: {
+        token: 'TOKEN'
+      }
+
+Example response
+
+    {
+      "msg": "New invitation email sent, please check your mail.",
+      "token": "TOKEN"
+    }
+  }
+
+```
+
+```js
+
 POST /user/login
-     {
-      email: 'johndoe@email.com',
-      password : 'PASSWORD'
-     }
+
+body: {
+        email: 'johndoe@email.com',
+        password : 'PASSWORD'
+      }
 
 Example response
 
@@ -57,9 +116,9 @@ Example response
 POST /trip/create
 Authorization: bearer TOKEN
 
-     {
-      tripNumber: '402034'
-     }
+body: {
+        tripNumber: '402034'
+      }
 
 Example response
 
@@ -80,10 +139,6 @@ Example response
 GET /trip/find
     ?number=402034
 Authorization: bearer TOKEN
-
-     {
-      tripNumber: '402034'
-     }
 
 Example response
 
@@ -108,9 +163,9 @@ Example response
 POST /job/create
 Authorization: bearer TOKEN
 
-     {
-        "jobNumber": "23423",
-        "tripNumber": "45345"
+body: {
+        jobNumber: "23423",
+        tripNumber: "45345"
       }
 
 Example response
