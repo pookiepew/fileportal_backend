@@ -1,5 +1,14 @@
 # Fileportal
 
+####Invite Auth flow:
+
+- An authenticated user invites new user with email
+- Invited user will receive email with a link which includes a 30 minute token
+- If invited user takes to long, a new 30 minute token can be sent by email
+- Invited user accepts within 30 minutes and accepts the invite
+- A 1 hour token is then created and the user can create a password
+- After password is sent the user will be saved and a 5 days token will be returned
+
 ### Routes
 
 ```js
