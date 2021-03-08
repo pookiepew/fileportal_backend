@@ -7,7 +7,7 @@ const userSchema = new Schema(
     name: requiredString,
     email: requiredString,
     password: requiredString,
-    userGroup: { type: Types.ObjectId, ref: 'UserGroup' }
+    userGroups: [{ type: Types.ObjectId, ref: 'UserGroup' }]
   },
   {
     versionKey: false,
