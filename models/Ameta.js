@@ -2,10 +2,10 @@ const { model, Schema, Types } = require('mongoose');
 
 const ametaSchema = new Schema(
   {
-    trip: { type: Types.ObjectId, ref: 'Trip', required: true },
+    trip: { type: Types.ObjectId, ref: 'Trip' },
     jobs: [{ type: Types.ObjectId, ref: 'Job' }],
-    lane: { type: String, required: true },
-    creator: { type: Types.ObjectId, ref: 'User', required: true }
+    lane: { type: Types.ObjectId, ref: 'Lane' },
+    creator: { type: Types.ObjectId, ref: 'User' }
   },
   {
     versionKey: false,
