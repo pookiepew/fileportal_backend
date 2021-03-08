@@ -1,5 +1,5 @@
 @host = http://localhost:6060
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxMzYzODY2NSwiZXhwIjoxNjE0MDcwNjY1fQ.UbwYLbpXHzLs0Azf3V5XeQ7NwSEySsuSWCYy3maNsr0
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNDg4OTg2MCwiZXhwIjoxNjE1MzIxODYwfQ.Q6avZVpR8hu8cJPk2NnVNE3MT8lDJSIru-BH-v6qnzE
 
 @invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQwOSwiZXhwIjoxNjEzNjU1MjA5fQ.m3LThtlFws48n1XFt-KDiEPGE1nXZKkHo9a-wizwFUQ
 
@@ -62,12 +62,12 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "tripNumber": "4"
+  "tripNumber": "1"
 }
 
 ###
 
-GET {{host}}/trip/find?number=4
+GET {{host}}/trip/find?number=1
 Authorization: Bearer {{token}}
 
 ###
@@ -77,11 +77,11 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "jobNumber": "44",
-  "tripNumber": "4"
+  "jobNumber": "1",
+  "tripNumber": "1"
 }
 
 ###
 
-GET {{host}}/job/find?number=41
+GET {{host}}/job/find?number=1
 Authorization: Bearer {{token}}
