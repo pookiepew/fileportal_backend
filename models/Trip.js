@@ -2,12 +2,13 @@ const { model, Schema, Types } = require('mongoose');
 
 const tripSchema = new Schema(
   {
-    number: { type: Number, required: true },
+    SRG_number: { type: Number },
+    LUB_number: { type: Number },
     jobs: [{ type: Types.ObjectId, ref: 'Job' }],
-    creator: { type: Types.ObjectId, ref: 'User', required: true },
     lane: { type: Types.ObjectId, ref: 'Lane' },
     userGroups: [{ type: Types.ObjectId, ref: 'UserGroup' }],
-    done: { type: Boolean, default: false }
+    done: { type: Boolean, default: false },
+    creator: { type: Types.ObjectId, ref: 'User', required: true },
   },
   {
     versionKey: false,
