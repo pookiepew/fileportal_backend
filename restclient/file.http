@@ -1,0 +1,2 @@
+@host = http://localhost:6060
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA0NzNlNzQzYjJmNzIwMDg4OTZkZjgxIn0sImlhdCI6MTYxNTI4MTc4MCwiZXhwIjoxNjE1NzEzNzgwfQ.s9nns2WgLcdkKINkFP5yJiAGdhh5A129EP7R_F66b9I
