@@ -4,6 +4,7 @@ const userGroupSchema = new Schema(
   {
     name: { type: String, required: true },
     users: [{ type: Types.ObjectId, ref: 'User' }],
+    creator: { type: Types.ObjectId, ref: 'User' }
   },
   {
     versionKey: false,

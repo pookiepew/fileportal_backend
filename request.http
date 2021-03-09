@@ -1,5 +1,5 @@
 @host = http://localhost:6060
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNDg4OTg2MCwiZXhwIjoxNjE1MzIxODYwfQ.Q6avZVpR8hu8cJPk2NnVNE3MT8lDJSIru-BH-v6qnzE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNTIzNzAwOCwiZXhwIjoxNjE1NjY5MDA4fQ.CSvyTQ3AH7GddJt_Pk_5eJxg8C6zoCbw-tPM5FfqW84
 
 @invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQwOSwiZXhwIjoxNjEzNjU1MjA5fQ.m3LThtlFws48n1XFt-KDiEPGE1nXZKkHo9a-wizwFUQ
 
@@ -85,3 +85,14 @@ Authorization: Bearer {{token}}
 
 GET {{host}}/job/find?number=1
 Authorization: Bearer {{token}}
+
+
+###
+
+POST {{host}}/usergroup/create HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "Lubbers"
+}

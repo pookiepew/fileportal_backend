@@ -21,6 +21,9 @@ const jobAlreadyExists = require('./jobAlreadyExists');
 
 const tokenMatchInviteToken = require('./tokenMatchInviteToken');
 
+// USERGROUPS
+const createUserGroup = require('./createUserGroup')
+
 module.exports = {
   connect,
   findUserByEmail,
@@ -37,4 +40,5 @@ module.exports = {
   findJobByNumber,
   jobAlreadyExists,
   tokenMatchInviteToken,
+  createUserGroup,
 };

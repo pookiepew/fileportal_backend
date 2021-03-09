@@ -10,6 +10,8 @@ const trip = require('./controllers/trip');
 
 const job = require('./controllers/job');
 
+const userGroup = require('./controllers/userGroup')
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -36,5 +38,11 @@ router.get('/trip/find', checkAuth, trip.find);
 router.post('/job/create', checkAuth, job.create);
 
 router.get('/job/find', checkAuth, job.find);
+
+router.post('/usergroup/create', checkAuth, userGroup.create)
+
+router.get('/usergroup/find-one', checkAuth, userGroup.findOne)
+
+router.get('/usergroup/find-all', checkAuth, userGroup.findAll)
 
 module.exports = router;
