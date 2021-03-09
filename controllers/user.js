@@ -11,6 +11,7 @@ const HttpError = require('../models/HttpError');
 
 const hashPassword = require('../functions/hashPassword');
 const createJwtToken = require('../functions/createJwtToken');
+const UserGroup = require('../models/UserGroup');
 
 const login = async (req, res, next) => {
   const { email, password } = req.body;
@@ -38,9 +39,9 @@ const login = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-  const { name, email, password } = req.body;
-  if (!name || !email || !password) {
-    const error = new HttpError('Name, email or password not provided', 400);
+  const { name, email, password, userGroup } = req.body;
+  if (!name || !email || !password || !userGroup) {
+    const error = new HttpError('Name, email, password or userGroup not provided', 400);
     return next(error);
   }
   if (req.user && req.user.email !== email) {
@@ -57,10 +58,11 @@ const register = async (req, res, next) => {
       return next(error);
     }
     const hashedPassword = await hashPassword(password, bcrypt);
-    user = await db.saveUser(name, email, hashedPassword, User);
+    user = await db.saveUser(name, email, hashedPassword, userGroup, User);
     const expiresIn = '5 days';
     const payload = { user: { id: user._id } };
     const token = await createJwtToken(payload, expiresIn, jwt, config);
+    await db.addUserToUserGroups(user._id, userGroup, UserGroup)
 
     res.status(201).json({ user: { name, email, token } });
   } catch (err) {
@@ -114,7 +116,7 @@ const invite = async (req, res, next) => {
     // Send invitation mail
     // WS emit update ?
 
-    res.json({ msg: 'Successfully sent invitation to ' + email });
+    res.json({ msg: 'Successfully sent invitation to ' + email, token });
   } catch (err) {
     next(err);
   }

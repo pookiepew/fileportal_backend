@@ -2,8 +2,6 @@ const UserGroup = require("../models/UserGroup");
 const HttpError = require("../models/HttpError");
 
 const db = require("../db/index");
-const { restart } = require("nodemon");
-const User = require("../models/User");
 
 const create = async (req, res, next) => {
   const { name } = req.body;
@@ -31,7 +29,7 @@ const create = async (req, res, next) => {
 
 const findAll = async (req, res, next) => {
   try {
-    const userGroups = await UserGroup.find()
+    const userGroups = await UserGroup.find().populate({ path: 'users', select: '-password' })
     res.json(userGroups)
   } catch (err) {
     next(err)
@@ -45,7 +43,7 @@ const findOne = async (req, res, next) => {
       const error = new HttpError('Name not provided', 400)
       return next(error)
     }
-    const userGroup = await UserGroup.findOne({ name })
+    const userGroup = await UserGroup.findOne({ name }).populate({ path: 'users', select: '-password' })
     res.json(userGroup)
   } catch (err) {
     next(err)

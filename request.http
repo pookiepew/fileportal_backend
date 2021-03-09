@@ -1,9 +1,9 @@
 @host = http://localhost:6060
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNTIzNzAwOCwiZXhwIjoxNjE1NjY5MDA4fQ.CSvyTQ3AH7GddJt_Pk_5eJxg8C6zoCbw-tPM5FfqW84
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA0NzNlNzQzYjJmNzIwMDg4OTZkZjgxIn0sImlhdCI6MTYxNTI4MTc4MCwiZXhwIjoxNjE1NzEzNzgwfQ.s9nns2WgLcdkKINkFP5yJiAGdhh5A129EP7R_F66b9I
 
-@invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQwOSwiZXhwIjoxNjEzNjU1MjA5fQ.m3LThtlFws48n1XFt-KDiEPGE1nXZKkHo9a-wizwFUQ
+@invToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTRAZW1haWwuY29tIn0sImlhdCI6MTYxNTI4NTU2NiwiZXhwIjoxNjE1Mjg3MzY2fQ.6SXTYBv12V-Sw-He8_0oTgQOo70ZBe65fMxWZSs6Uy4
 
-@acceptToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTVAZW1haWwuY29tIn0sImlhdCI6MTYxMzY1MzQ0NiwiZXhwIjoxNjEzNzM5ODQ2fQ.n1UEzZxlAG1fH7pf7PGY19ixPDKfb4WgRXgqI4vmYeI
+@acceptToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoiamRvZTRAZW1haWwuY29tIn0sImlhdCI6MTYxNTI4NTU4NywiZXhwIjoxNjE1MzcxOTg3fQ.5cKXjJXjQFdJE1HVXlxLUy_lhGlKHDrgrBiWVfFwQlc
 
 POST {{host}}/user/register HTTP/1.1
 content-type: application/json
@@ -11,8 +11,9 @@ Authorization: Bearer {{acceptToken}}
 
 {
   "name": "John Doe",
-  "email": "jdoe5@email.com",
-  "password": "ioj52lk34jki345"
+  "email": "jdoe4@email.com",
+  "password": "ioj52lk34jki345",
+  "userGroup": "6046909495d6370020f081fa"
 }
 
 ###
@@ -32,7 +33,7 @@ content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "email": "jdoe5@email.com"
+  "email": "jdoe4@email.com"
 }
 
 ###
@@ -42,7 +43,7 @@ content-type: application/json
 Authorization: Bearer {{invToken}}
 
 {
-  "email": "jdoe5@email.com",
+  "email": "jdoe4@email.com",
   "token": "{{invToken}}"
 }
 
@@ -96,3 +97,14 @@ Authorization: Bearer {{token}}
 {
   "name": "Lubbers"
 }
+
+###
+
+GET {{host}}/usergroup/find-one?name=Lubbers
+Authorization: Bearer {{token}}
+
+
+###
+
+GET {{host}}/usergroup/find-all
+Authorization: Bearer {{token}}

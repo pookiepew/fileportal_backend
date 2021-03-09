@@ -23,6 +23,7 @@ const tokenMatchInviteToken = require('./tokenMatchInviteToken');
 
 // USERGROUPS
 const createUserGroup = require('./createUserGroup')
+const addUserToUserGroups = require('./addUserToUserGroups')
 
 module.exports = {
   connect,
@@ -41,4 +42,5 @@ module.exports = {
   jobAlreadyExists,
   tokenMatchInviteToken,
   createUserGroup,
+  addUserToUserGroups
 };
