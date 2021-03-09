@@ -21,7 +21,11 @@ app.use(express.json());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/', require('./routes'));
+app.use('/file', require('./routes/file'));
+app.use('/job', require('./routes/job'));
+app.use('/trip', require('./routes/trip'));
+app.use('/user', require('./routes/user'));
+app.use('/usergroup', require('./routes/usergroup'));
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);

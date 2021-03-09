@@ -1,5 +1,3 @@
-const HttpError = require('../models/HttpError');
-
 module.exports = findUserByEmail = async (email, User) => {
   if (!email) throw new Error('userId not provided');
   try {

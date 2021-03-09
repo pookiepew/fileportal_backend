@@ -1,29 +1,29 @@
 const connect = require('./connect');
 
 // USER
-const findUserByEmail = require('./findUserByEmail');
-const findUserById = require('./findUserById');
-const saveUser = require('./saveUser');
-const saveInvitedUser = require('./saveInvitedUser');
-const findInvitedUser = require('./findInvitedUser');
-const findInvitedUserByToken = require('./findInvitedUserByToken');
+const findUserByEmail = require('./user/findUserByEmail');
+const findUserById = require('./user/findUserById');
+const saveUser = require('./user/saveUser');
+const saveInvitedUser = require('./user/saveInvitedUser');
+const findInvitedUser = require('./user/findInvitedUser');
+const findInvitedUserByToken = require('./user/findInvitedUserByToken');
+const tokenMatchInviteToken = require('./user/tokenMatchInviteToken');
 
 // TRIP
-const createNewTrip = require('./createNewTrip');
-const addJobToTrip = require('./addJobToTrip');
-const findTripByNumber = require('./findTripByNumber');
-const tripAlreadyExists = require('./tripAlreadyExists');
+const createNewTrip = require('./trip/createNewTrip');
+const addJobToTrip = require('./trip/addJobToTrip');
+const findTripByNumber = require('./trip/findTripByNumber');
+const tripAlreadyExists = require('./trip/tripAlreadyExists');
 
 // JOB
-const createNewJob = require('./createNewJob');
-const findJobByNumber = require('./findJobByNumber');
-const jobAlreadyExists = require('./jobAlreadyExists');
+const createNewJob = require('./job/createNewJob');
+const findJobByNumber = require('./job/findJobByNumber');
+const jobAlreadyExists = require('./job/jobAlreadyExists');
 
-const tokenMatchInviteToken = require('./tokenMatchInviteToken');
 
 // USERGROUPS
-const createUserGroup = require('./createUserGroup')
-const addUserToUserGroups = require('./addUserToUserGroups')
+const createUserGroup = require('./usergroup/createUserGroup')
+const addUserToUserGroups = require('./usergroup/addUserToUserGroups')
 
 module.exports = {
   connect,
