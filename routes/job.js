@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post('/create', checkAuth, job.create);
 
-router.get('/find', checkAuth, job.find);
+router.get('/find-one', checkAuth, job.findOne);
 
 module.exports = router;

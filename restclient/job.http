@@ -13,5 +13,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{host}}/job/find?number=1
+GET {{host}}/job/find-one
+?company=SRG
+&jobNumber=1
 Authorization: Bearer {{token}}

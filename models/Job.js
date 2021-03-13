@@ -2,9 +2,11 @@ const { model, Schema, Types } = require('mongoose');
 
 const jobSchema = new Schema(
   {
-    SRG_number: { type: Number },
-    LUB_number: { type: Number },
-    trip: { type: Number },
+    number: {
+      SRG: { type: Number },
+      LUB: { type: Number }
+    },
+    trip: { type: Types.ObjectId, ref: 'Trip' },
     files: [{ type: Types.ObjectId, ref: 'File' }],
     lane: { type: Types.ObjectId, ref: 'Lane' },
     userGroups: [{ type: Types.ObjectId, ref: 'UserGroup' }],

@@ -1,7 +1,10 @@
-module.exports = findJobById = async (number, Job, HttpError) => {
-  if (!number) throw new Error('No job number provided');
+module.exports = findJobByNumber = async (company, jobNumber, Job, HttpError) => {
+  let query;
+
+  if (company.toLowerCase() === 'srg') query = 'SRG_number'
+  if (company.toLowerCase() === 'lub') query = 'LUB_number'
   try {
-    const job = await Job.findOne({ number }).populate({
+    const job = await Job.findOne({ query: jobNumber }).populate({
       path: 'file'
     });
     if (!job) {

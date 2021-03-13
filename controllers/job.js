@@ -7,8 +7,12 @@ const HttpError = require('../models/HttpError');
 const create = async (req, res, next) => {
   const { jobNumber, tripNumber, info = '' } = req.body;
   const userId = req.user.id;
-  if (!jobNumber || !tripNumber) {
-    const error = new HttpError('Job- or trip number are missing', 400);
+  if (!tripNumber) {
+    const error = new HttpError('tripnumber are missing', 400);
+    return next(error);
+  }
+  if (!SRG_number && !LUB_number) {
+    const error = new HttpError('A job number must be provided', 400);
     return next(error);
   }
   if (!userId) {
@@ -28,14 +32,14 @@ const create = async (req, res, next) => {
   }
 };
 
-const find = async (req, res, next) => {
-  const { number } = req.query;
-  if (!number) {
-    const error = new HttpError('No job number provided', 400);
+const findOne = async (req, res, next) => {
+  const { company, jobNumber } = req.query;
+  if (!company || !jobNumber) {
+    const error = new HttpError('A company and jobnumber must be provided', 400);
     return next(error);
   }
   try {
-    const job = await db.findJobByNumber(number, Job, HttpError);
+    const job = await db.findJobByNumber(company, jobNumber, Job, HttpError);
     res.json(job);
   } catch (err) {
     next(err);
@@ -44,5 +48,5 @@ const find = async (req, res, next) => {
 
 module.exports = {
   create,
-  find
+  findOne
 };
