@@ -2,8 +2,10 @@ const { model, Schema, Types } = require('mongoose');
 
 const tripSchema = new Schema(
   {
-    SRG_number: { type: Number },
-    LUB_number: { type: Number },
+    number: {
+      SRG: { type: Number },
+      LUB: { type: Number }
+    },
     jobs: [{ type: Types.ObjectId, ref: 'Job' }],
     lane: { type: Types.ObjectId, ref: 'Lane' },
     userGroups: [{ type: Types.ObjectId, ref: 'UserGroup' }],
