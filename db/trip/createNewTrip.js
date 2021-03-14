@@ -1,16 +1,9 @@
-module.exports = createNewTrip = async (
-  numbers,
-  creator,
-  Trip,
-  HttpError
-) => {
-  if (!numbers) throw new Error('No trip number provided');
+module.exports = createNewTrip = async (trip, creator, lane, Trip) => {
   try {
     const newTrip = new Trip({
-      numbers,
-      jobs: [],
-      userGroups: [],
-      creator
+      ...trip,
+      lane,
+      creator,
     });
     await newTrip.save();
     return newTrip;

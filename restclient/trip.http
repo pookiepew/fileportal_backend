@@ -1,17 +1,23 @@
 @host = http://localhost:6060
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA0NzNlNzQzYjJmNzIwMDg4OTZkZjgxIn0sImlhdCI6MTYxNTI4MTc4MCwiZXhwIjoxNjE1NzEzNzgwfQ.s9nns2WgLcdkKINkFP5yJiAGdhh5A129EP7R_F66b9I
-
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNTczMDU3MiwiZXhwIjoxNjE2MTYyNTcyfQ.lsKbKtWWGVKMAwvEDX4Y9DL1Nf-f6r-4wZIjqbFp17Q
 
 POST {{host}}/trip/create HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "tripNumber": "1"
+  "trip": {
+    "numbers": {
+      "LUB": 2
+    },
+    "jobs": [],
+    "lane": "GB-NO",
+    "userGroups": []
+  }
 }
 
 ###
 
-GET {{host}}/trip/find?number=1
+GET {{host}}/trip/find
+?number=2
 Authorization: Bearer {{token}}
