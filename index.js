@@ -26,6 +26,7 @@ app.use('/job', require('./routes/job'));
 app.use('/trip', require('./routes/trip'));
 app.use('/user', require('./routes/user'));
 app.use('/usergroup', require('./routes/usergroup'));
+app.use('/lane', require('./routes/lane'));
 
 app.use((req, res, next) => {
   const error = new HttpError('Could not find this route.', 404);
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use((error, req, res, next) => {
   if (req.file) {
-    fs.unlink(req.file.path, err => {
+    fs.unlink(req.file.path, (err) => {
       console.log(err);
     });
   }
@@ -44,7 +45,7 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({
     message: error.message || 'An unknown error occurred!',
-    code: error.code || 500
+    code: error.code || 500,
   });
 });
 
@@ -55,7 +56,7 @@ const server = app.listen(port, async () => {
   await db.connect();
   const io = websocket.init(server);
 
-  io.on('connection', socket => {
+  io.on('connection', (socket) => {
     console.log('Websocket client connected. ID:', socket.id);
     websocket.listen(socket);
     websocket.ping(socket);

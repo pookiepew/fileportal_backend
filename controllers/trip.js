@@ -5,22 +5,19 @@ const HttpError = require('../models/HttpError');
 const db = require('../db/index');
 
 const create = async (req, res, next) => {
-  const { tripNumber } = req.body;
+  const { trip } = req.body;
   const userId = req.user.id;
-  if (!tripNumber) {
-    const error = new HttpError('No trip number provided', 400);
-    return next(error);
-  }
   if (!userId) {
     const error = new HttpError('Not authorized', 401);
     return next(error);
   }
   try {
-    if (await db.tripAlreadyExists(tripNumber, Trip)) {
+    await db.fieldsAreMissing(trip);
+    if (await db.tripAlreadyExists(numbers, Trip)) {
       const error = new HttpError('Trip already exists', 200);
       return next(error);
     }
-    const newTrip = await db.createNewTrip(tripNumber, userId, Trip, HttpError);
+    const newTrip = await db.createNewTrip(numbers, userId, Trip, HttpError);
     res.status(201).json(newTrip);
   } catch (err) {
     next(err);
@@ -43,5 +40,5 @@ const find = async (req, res, next) => {
 
 module.exports = {
   create,
-  find
+  find,
 };

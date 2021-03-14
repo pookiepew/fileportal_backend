@@ -10,6 +10,7 @@ const findInvitedUserByToken = require('./user/findInvitedUserByToken');
 const tokenMatchInviteToken = require('./user/tokenMatchInviteToken');
 
 // TRIP
+const fieldsAreMissing = require('./trip/fieldsAreMissing');
 const createNewTrip = require('./trip/createNewTrip');
 const addJobToTrip = require('./trip/addJobToTrip');
 const findTripByNumber = require('./trip/findTripByNumber');
@@ -20,10 +21,15 @@ const createNewJob = require('./job/createNewJob');
 const findJobByNumber = require('./job/findJobByNumber');
 const jobAlreadyExists = require('./job/jobAlreadyExists');
 
-
 // USERGROUPS
-const createUserGroup = require('./usergroup/createUserGroup')
-const addUserToUserGroups = require('./usergroup/addUserToUserGroups')
+const createUserGroup = require('./usergroup/createUserGroup');
+const addUserToUserGroups = require('./usergroup/addUserToUserGroups');
+
+// LANE
+
+const laneAlreadyExists = require('./lane/laneAlreadyExists');
+const createNewLane = require('./lane/createNewLane');
+const findLaneByName = require('./lane/findLaneByName');
 
 module.exports = {
   connect,
@@ -33,6 +39,7 @@ module.exports = {
   saveInvitedUser,
   findInvitedUser,
   findInvitedUserByToken,
+  fieldsAreMissing,
   createNewTrip,
   addJobToTrip,
   findTripByNumber,
@@ -42,5 +49,8 @@ module.exports = {
   jobAlreadyExists,
   tokenMatchInviteToken,
   createUserGroup,
-  addUserToUserGroups
+  addUserToUserGroups,
+  laneAlreadyExists,
+  createNewLane,
+  findLaneByName,
 };

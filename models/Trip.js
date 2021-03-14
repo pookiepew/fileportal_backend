@@ -2,7 +2,7 @@ const { model, Schema, Types } = require('mongoose');
 
 const tripSchema = new Schema(
   {
-    number: {
+    numbers: {
       SRG: { type: Number },
       LUB: { type: Number }
     },

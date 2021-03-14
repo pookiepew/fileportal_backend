@@ -1,0 +1,17 @@
+@host = http://localhost:6060
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNTczMDU3MiwiZXhwIjoxNjE2MTYyNTcyfQ.lsKbKtWWGVKMAwvEDX4Y9DL1Nf-f6r-4wZIjqbFp17Q
+
+
+POST {{host}}/lane/create HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": "NO-DK"
+}
+
+###
+
+GET {{host}}/lane/find-one
+?name=NO-GB
+Authorization: Bearer {{token}}

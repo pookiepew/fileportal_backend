@@ -1,14 +1,15 @@
 module.exports = createNewTrip = async (
-  tripNumber,
+  numbers,
   creator,
   Trip,
   HttpError
 ) => {
-  if (!tripNumber) throw new Error('No trip number provided');
+  if (!numbers) throw new Error('No trip number provided');
   try {
     const newTrip = new Trip({
-      number: tripNumber,
+      numbers,
       jobs: [],
+      userGroups: [],
       creator
     });
     await newTrip.save();

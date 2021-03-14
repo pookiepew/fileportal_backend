@@ -3,11 +3,11 @@ const { model, Schema, Types } = require('mongoose');
 const laneSchema = new Schema(
   {
     name: { type: String, required: true },
-    users: [{ type: Types.ObjectId, ref: 'User' }]
+    creator: { type: Types.ObjectId, ref: 'User' },
   },
   {
     versionKey: false,
-    timestamps: true
+    timestamps: true,
   }
 );
 
