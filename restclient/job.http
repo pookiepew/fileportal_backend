@@ -1,14 +1,22 @@
 @host = http://localhost:6060
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjA0NzNlNzQzYjJmNzIwMDg4OTZkZjgxIn0sImlhdCI6MTYxNTI4MTc4MCwiZXhwIjoxNjE1NzEzNzgwfQ.s9nns2WgLcdkKINkFP5yJiAGdhh5A129EP7R_F66b9I
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjAyY2U0NjA2YTM5ZTI0YTgwYTgwZjZlIn0sImlhdCI6MTYxNTczMDU3MiwiZXhwIjoxNjE2MTYyNTcyfQ.lsKbKtWWGVKMAwvEDX4Y9DL1Nf-f6r-4wZIjqbFp17Q
 
+# NO-GB LANE: 604e185118cfa00058522ae3
 
 POST {{host}}/job/create HTTP/1.1
 content-type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "jobNumber": "1",
-  "tripNumber": "1"
+  "job": {
+    "numbers": {
+      "SRG": 1
+    },
+    "trip": "604e29b2157571029680644a",
+    "lane": "604e185118cfa00058522ae3",
+    "userGroups": "604e5597f19c310329d2595d",
+    "info": "Testing creating jobs and stuff..."
+  }
 }
 
 ###

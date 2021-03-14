@@ -1,0 +1,32 @@
+{
+  "numbers": { "SRG": 1 },
+  "jobs": [
+    {
+      "numbers": { "SRG": 1 },
+      "files": [],
+      "userGroups": ["604e5597f19c310329d2595d"],
+      "_id": "604e58a4b47e39039a67300c",
+      "trip": "604e29b2157571029680644a",
+      "lane": "604e185118cfa00058522ae3",
+      "info": "Testing creating jobs and stuff...",
+      "creator": {
+        "_id": "602ce4606a39e24a80a80f6e",
+        "name": "John Doe",
+        "email": "jdoe@email.com"
+      },
+      "createdAt": "2021-03-14T18:40:36.432Z",
+      "updatedAt": "2021-03-14T18:40:36.432Z"
+    }
+  ],
+  "userGroups": [],
+  "done": false,
+  "_id": "604e29b2157571029680644a",
+  "lane": "604e185118cfa00058522ae3",
+  "creator": {
+    "_id": "602ce4606a39e24a80a80f6e",
+    "name": "John Doe",
+    "email": "jdoe@email.com"
+  },
+  "createdAt": "2021-03-14T15:20:18.695Z",
+  "updatedAt": "2021-03-14T18:40:36.458Z"
+}

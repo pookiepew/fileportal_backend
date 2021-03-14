@@ -18,6 +18,6 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{host}}/trip/find
-?number=2
+GET {{host}}/trip/find-one
+?number=1
 Authorization: Bearer {{token}}

@@ -1,7 +1,6 @@
-module.exports = addJobToTrip = async (number, jobId, Trip) => {
-  if (!number || !jobId) throw new Error('Number or job not provided');
+module.exports = addJobToTrip = async (id, jobId, Trip) => {
   try {
-    const trip = await Trip.findOne({ number });
+    const trip = await Trip.findById(id);
     if (!trip) throw new Error('Trip does not exist!');
     trip.jobs.push(jobId);
     await trip.save();

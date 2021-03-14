@@ -8,6 +8,6 @@ const router = express.Router();
 
 router.post('/create', checkAuth, trip.create);
 
-router.get('/find', checkAuth, trip.findOne);
+router.get('/find-one', checkAuth, trip.findOne);
 
 module.exports = router;

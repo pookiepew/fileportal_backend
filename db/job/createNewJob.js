@@ -1,16 +1,12 @@
-module.exports = createNewJob = async (number, trip, info, creator, Job) => {
-  if (!number || !trip || !creator)
-    throw new Error('Number, trip or creator missing');
+module.exports = createNewJob = async (job, creator, Job) => {
   try {
-    const job = new Job({
-      number,
-      trip,
+    const newJob = new Job({
+      ...job,
       files: [],
-      info,
       creator,
     });
-    await job.save();
-    return job;
+    await newJob.save();
+    return newJob;
   } catch (err) {
     throw err;
   }
