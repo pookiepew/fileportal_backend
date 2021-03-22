@@ -10,4 +10,6 @@ router.post('/create', checkAuth, job.create);
 
 router.get('/find-one', checkAuth, job.findOne);
 
+router.get('/find-all', checkAuth, job.findAll);
+
 module.exports = router;

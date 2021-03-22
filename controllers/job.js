@@ -34,7 +34,17 @@ const findOne = async (req, res, next) => {
   }
 };
 
+const findAll = async (req, res, next) => {
+  try {
+    const jobs = await Job.find();
+    res.json(jobs);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   create,
   findOne,
+  findAll,
 };
