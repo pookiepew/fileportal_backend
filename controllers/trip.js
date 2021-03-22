@@ -32,7 +32,17 @@ const findOne = async (req, res, next) => {
   }
 };
 
+const findAll = async (req, res, next) => {
+  try {
+    const trips = await Trip.find();
+    res.json(trips);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   create,
   findOne,
+  findAll,
 };

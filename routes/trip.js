@@ -10,4 +10,6 @@ router.post('/create', checkAuth, trip.create);
 
 router.get('/find-one', checkAuth, trip.findOne);
 
+router.get('/find-all', checkAuth, trip.findAll);
+
 module.exports = router;
