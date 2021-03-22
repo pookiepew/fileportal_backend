@@ -27,7 +27,7 @@ const login = async (req, res, next) => {
 
     if (!isMatch) return next(credentialsFail);
 
-    const expiresIn = '5 days';
+    const expiresIn = '365 days';
     const payload = { user: { id: user._id } };
     const token = await createJwtToken(payload, expiresIn, jwt, config);
 
@@ -41,7 +41,10 @@ const login = async (req, res, next) => {
 const register = async (req, res, next) => {
   const { name, email, password, userGroup } = req.body;
   if (!name || !email || !password || !userGroup) {
-    const error = new HttpError('Name, email, password or userGroup not provided', 400);
+    const error = new HttpError(
+      'Name, email, password or userGroup not provided',
+      400
+    );
     return next(error);
   }
   if (req.user && req.user.email !== email) {
@@ -59,10 +62,10 @@ const register = async (req, res, next) => {
     }
     const hashedPassword = await hashPassword(password, bcrypt);
     user = await db.saveUser(name, email, hashedPassword, userGroup, User);
-    const expiresIn = '5 days';
+    const expiresIn = '365 days';
     const payload = { user: { id: user._id } };
     const token = await createJwtToken(payload, expiresIn, jwt, config);
-    await db.addUserToUserGroups(user._id, userGroup, UserGroup)
+    await db.addUserToUserGroups(user._id, userGroup, UserGroup);
 
     res.status(201).json({ user: { name, email, token } });
   } catch (err) {
@@ -184,10 +187,36 @@ const generateNewInviteToken = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  const { userDetails } = req.body;
+  const userId = req.user.id;
+  if (!userId || !userDetails) {
+    const error = new HttpError('User id or user details not provided', 400);
+    return next(error);
+  }
+  try {
+    const user = await db.updateUser(userId, userDetails, User);
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const findAll = async (req, res, next) => {
+  try {
+    const users = await User.find().select('-password');
+    res.json(users);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   login,
   register,
   invite,
   acceptInvite,
   generateNewInviteToken,
+  update,
+  findAll,
 };

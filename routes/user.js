@@ -16,4 +16,8 @@ router.post('/accept-invite', checkAuth, user.acceptInvite);
 
 router.post('/new-invite-token', user.generateNewInviteToken);
 
+router.put('/update', checkAuth, user.update);
+
+router.get('/find-all', checkAuth, user.findAll);
+
 module.exports = router;

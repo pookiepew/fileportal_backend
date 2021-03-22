@@ -8,6 +8,7 @@ const saveInvitedUser = require('./user/saveInvitedUser');
 const findInvitedUser = require('./user/findInvitedUser');
 const findInvitedUserByToken = require('./user/findInvitedUserByToken');
 const tokenMatchInviteToken = require('./user/tokenMatchInviteToken');
+const updateUser = require('./user/updateUser');
 
 // TRIP
 const fieldsAreMissing = require('./trip/fieldsAreMissing');
@@ -48,6 +49,7 @@ module.exports = {
   findJobByNumber,
   jobAlreadyExists,
   tokenMatchInviteToken,
+  updateUser,
   createUserGroup,
   addUserToUserGroups,
   laneAlreadyExists,
