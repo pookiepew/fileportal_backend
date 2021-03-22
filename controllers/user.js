@@ -39,28 +39,26 @@ const login = async (req, res, next) => {
 };
 
 const register = async (req, res, next) => {
-  const { name, email, password, userGroup } = req.body;
-  if (!name || !email || !password || !userGroup) {
-    const error = new HttpError(
-      'Name, email, password or userGroup not provided',
-      400
+  const { name, email, password1, password2, userGroup } = req.body;
+  if (!name || !email || !password1 || !password2 || !userGroup) {
+    return next(
+      new HttpError('Name, email, password or userGroup not provided', 400)
     );
-    return next(error);
+  }
+  if (password1 !== password2) {
+    return next(new HttpError('Passwords does not match', 400));
   }
   if (req.user && req.user.email !== email) {
-    const error = new HttpError('Authorization error', 401);
-    return next(error);
+    return next(new HttpError('Authorization error', 401));
   }
   try {
     let user = await db.findUserByEmail(email, User);
     if (user) {
-      const error = new HttpError(
-        'User already exists, please use another email',
-        400
+      return next(
+        new HttpError('User already exists, please use another email', 400)
       );
-      return next(error);
     }
-    const hashedPassword = await hashPassword(password, bcrypt);
+    const hashedPassword = await hashPassword(password1, bcrypt);
     user = await db.saveUser(name, email, hashedPassword, userGroup, User);
     const expiresIn = '365 days';
     const payload = { user: { id: user._id } };
@@ -128,20 +126,16 @@ const invite = async (req, res, next) => {
 const acceptInvite = async (req, res, next) => {
   const { email, token } = req.body;
   if (!email || !token) {
-    const error = new HttpError(
-      'Email or Token not provided, access denied',
-      401
+    return next(
+      new HttpError('Email or Token not provided, access denied', 401)
     );
-    return next(error);
   }
   if (req.user && req.user.email !== email) {
-    const error = new HttpError('Email does not match token', 401);
-    return next(error);
+    return next(new HttpError('Email does not match token', 401));
   }
   try {
     if (!(await db.tokenMatchInviteToken(token, InvitedUser))) {
-      const error = new HttpError('Invalid token', 401);
-      return next(error);
+      return next(new HttpError('Invalid token', 401));
     }
     const invitedUser = await db.findInvitedUser(email, InvitedUser);
     invitedUser.accepted = true;
@@ -159,18 +153,15 @@ const acceptInvite = async (req, res, next) => {
 const generateNewInviteToken = async (req, res, next) => {
   const { token } = req.body;
   if (!token) {
-    const error = new HttpError('Token not provided, access denied', 401);
-    return next(error);
+    return next(new HttpError('Token not provided, access denied', 401));
   }
   try {
     if (!(await db.tokenMatchInviteToken(token, InvitedUser))) {
-      const error = new HttpError('Invalid token', 401);
-      return next(error);
+      return next(new HttpError('Invalid token', 401));
     }
     const invitedUser = await db.findInvitedUserByToken(token, InvitedUser);
     if (!invitedUser) {
-      const error = new HttpError('No user found', 404);
-      return next(error);
+      return next(new HttpError('No user found', 404));
     }
     const payload = { user: { email: invitedUser.email } };
     const expiresIn = '30 minutes';
@@ -189,10 +180,14 @@ const generateNewInviteToken = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   const { userDetails } = req.body;
+  if (userDetails.password) {
+    return next(
+      new HttpError('Not able to change password with this route', 400)
+    );
+  }
   const userId = req.user.id;
   if (!userId || !userDetails) {
-    const error = new HttpError('User id or user details not provided', 400);
-    return next(error);
+    return next(new HttpError('User id or user details not provided', 400));
   }
   try {
     const user = await db.updateUser(userId, userDetails, User);

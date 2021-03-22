@@ -12,7 +12,8 @@ Authorization: Bearer {{acceptToken}}
 {
   "name": "John Doe",
   "email": "jdoe4@email.com",
-  "password": "ioj52lk34jki345",
+  "password1": "ioj52lk34jki345",
+  "password2": "ioj52lk34jki345",
   "userGroup": "6046909495d6370020f081fa"
 }
 
